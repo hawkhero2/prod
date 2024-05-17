@@ -14,8 +14,9 @@ public class ApiHandler {
     }
 
     /**
+     * @description Handler method for API calls
      * @param url
-     * @return
+     * @return String
      */
     public String get(String url) {
         String response = "";
