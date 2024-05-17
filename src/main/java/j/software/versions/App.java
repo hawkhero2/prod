@@ -1,20 +1,18 @@
 package j.software.versions;
 
-// import j.software.versions.ApiHandler;
-// import java.io.BufferedReader;
-// import java.io.InputStream;
-// import java.io.InputStreamReader;
-// import java.net.HttpURLConnection;
-// import java.net.URI;
-// import java.net.URL;
 import java.util.ArrayList;
 
-
-/**
- * Hello world!
- *
- */
 public class App 
+
+/* TODO
+Add the API urls for the following apps: 
+Chrome, Firefox, Adobe Acrobat Reader DC,Cisco AnyConnect,
+Citrix Workspace,IrfanView,Java 8,Skype™,VLC media player,
+Thunderbird, Greenshot, OpenOffice, Microsoft Office Home and Business 2013 Microsoft Office Home and Business 2016 ,
+Windows Defender Security Center,Sonicwall NetExtender,PGina
+FortiClient, Azure VPN Client, Libre Office
+*/
+ 
 {
     public static void main( String[] args ) {
         String[] urls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
