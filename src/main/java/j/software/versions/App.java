@@ -1,6 +1,8 @@
 package j.software.versions;
 
-import java.util.ArrayList;
+import j.software.versions.ApiHandler;
+import j.software.versions.ScrappingHandler;
+
 
 public class App 
 
@@ -16,7 +18,7 @@ FortiClient, Azure VPN Client, Libre Office
  
 {
     public static void main( String[] args ) {
-        String[] urls = {"https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html",
+        String[] urls = {"https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html","https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html",
         "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
         "https://www.irfanview.com/main_history.htm",
         "https://www.videolan.org/vlc/releases/"};
@@ -24,40 +26,45 @@ FortiClient, Azure VPN Client, Libre Office
         String[] apiUrls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
         "https://product-details.mozilla.org/1.0/firefox_versions.json"};
 
-        for (String url : apiUrls) {
-            try {
-                ApiHandler apiHandler = new ApiHandler();
-                String responseStr = apiHandler.get(url);
+        // for (String url : apiUrls) {
+        //     try {
+        //         ApiHandler apiHandler = new ApiHandler();
+        //         String responseStr = apiHandler.get(url);
 
-                ArrayList<String> versions = new ArrayList<>(apiUrls.length);
+        //         ArrayList<String> versions = new ArrayList<>(apiUrls.length);
 
-                for ( String item : responseStr.split(",")) {
+        //         for ( String item : responseStr.split(",")) {
                     
-                    if (url.contains("chrome")) {
+        //             if (url.contains("chrome")) {
 
-                        if(item.contains("\"version\"") ) {
-                            versions.add("chrome:"+item.split(":")[1]+",");
-                        }
-                    }
+        //                 if(item.contains("\"version\"") ) {
+        //                     versions.add("chrome:"+item.split(":")[1]+",");
+        //                 }
+        //             }
 
-                    if (url.contains("mozilla")) {
-                        if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
-                            versions.add(item+",");
-                        }
-                    }
-                }
-            System.out.println(versions.toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        //             if (url.contains("mozilla")) {
+        //                 if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
+        //                     versions.add(item+",");
+        //                 }
+        //             }
+        //         }
+        //     System.out.println(versions.toString());
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        // }
 
-        for (String url : urls) {
-            try {
+        // for (String url : urls) {
+        //     try {
+        //         ScrappingHandler scrappingHandler = new ScrappingHandler();
+        //         System.out.println(scrappingHandler.get(url));
                 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        //     } catch (Exception e) {
+        //         e.printStackTrace();
+        //     }
+        // }
+
+        ScrappingHandler scrappingHandler = new ScrappingHandler();
+        System.out.println(scrappingHandler.get(urls[0]));
     }
 }
