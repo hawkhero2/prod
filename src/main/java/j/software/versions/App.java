@@ -18,10 +18,11 @@ FortiClient, Azure VPN Client, Libre Office
  
 {
     public static void main( String[] args ) {
-        String[] urls = {"https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html","https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html",
+        String[] urls = {"https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
         "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
         "https://www.irfanview.com/main_history.htm",
-        "https://www.videolan.org/vlc/releases/"};
+        "https://www.videolan.org/vlc/releases/",
+        "https://support.microsoft.com/en-us/skype/what-is-the-latest-version-of-skype-on-each-platform-7423a24f-1f26-4782-85d6-27abdaadd5ad"};
 
         String[] apiUrls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
         "https://product-details.mozilla.org/1.0/firefox_versions.json"};
@@ -65,6 +66,6 @@ FortiClient, Azure VPN Client, Libre Office
         // }
 
         ScrappingHandler scrappingHandler = new ScrappingHandler();
-        System.out.println(scrappingHandler.get(urls[0]));
+        System.out.println(scrappingHandler.get(urls[1]));
     }
 }
