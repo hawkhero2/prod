@@ -2,6 +2,9 @@ package j.software.versions;
 
 import j.software.versions.ApiHandler;
 import j.software.versions.ScrappingHandler;
+import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class App 
@@ -27,45 +30,52 @@ FortiClient, Azure VPN Client, Libre Office
         String[] apiUrls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
         "https://product-details.mozilla.org/1.0/firefox_versions.json"};
 
-        // for (String url : apiUrls) {
-        //     try {
-        //         ApiHandler apiHandler = new ApiHandler();
-        //         String responseStr = apiHandler.get(url);
+        ArrayList<String> versions = new ArrayList<String>(urls.length+apiUrls.length);
+        for (String url : apiUrls) {
+            try {
+                ApiHandler apiHandler = new ApiHandler();
+                String responseStr = apiHandler.get(url);
 
-        //         ArrayList<String> versions = new ArrayList<>(apiUrls.length);
-
-        //         for ( String item : responseStr.split(",")) {
+                for ( String item : responseStr.split(",")) {
                     
-        //             if (url.contains("chrome")) {
+                    if (url.contains("chrome")) {
 
-        //                 if(item.contains("\"version\"") ) {
-        //                     versions.add("chrome:"+item.split(":")[1]+",");
-        //                 }
-        //             }
+                        if(item.contains("\"version\"") ) {
+                            versions.add("chrome:"+item.split(":")[1]+",");
+                        }
+                    }
 
-        //             if (url.contains("mozilla")) {
-        //                 if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
-        //                     versions.add(item+",");
-        //                 }
-        //             }
-        //         }
-        //     System.out.println(versions.toString());
-        //     } catch (Exception e) {
-        //         e.printStackTrace();
-        //     }
-        // }
+                    if (url.contains("mozilla")) {
+                        if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
+                            versions.add(item+",");
+                        }
+                    }
+                }
+            System.out.println(versions.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-        // for (String url : urls) {
-        //     try {
-        //         ScrappingHandler scrappingHandler = new ScrappingHandler();
-        //         System.out.println(scrappingHandler.get(url));
-                
-        //     } catch (Exception e) {
-        //         e.printStackTrace();
-        //     }
-        // }
+        for (String url : urls) {
+            try {
+                ScrappingHandler scrappingHandler = new ScrappingHandler();
+                versions.add(scrappingHandler.get(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-        ScrappingHandler scrappingHandler = new ScrappingHandler();
-        System.out.println(scrappingHandler.get(urls[1]));
+
+        try {
+            FileWriter writer = new FileWriter("versions.txt", true);
+
+            for ( String version : versions) {
+                writer.write(version);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
