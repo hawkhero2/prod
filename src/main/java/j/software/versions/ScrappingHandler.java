@@ -43,10 +43,10 @@ public class ScrappingHandler {
             }
 
             if (url.contains("cisco")) {
-               Elements elements = doc.select("div[data-id='link4']");
+               Elements elements = doc.select("a[data-id='link4']");
                 if ( elements.size() > 0) {
                     for ( Element item : elements) {
-                         if ( item.text().contains("AnyConnect")) {
+                         if ( item.text().contains("AnyConnect Secure Mobility Client")) {
                              responseString = item.text();
                              break;
                          }
