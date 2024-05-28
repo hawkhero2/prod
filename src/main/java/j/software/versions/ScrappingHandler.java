@@ -41,7 +41,7 @@ public class ScrappingHandler {
             // Adobe Acrobat
             if (url.contains("adobe")) {
                 Element versionElement = doc.selectFirst("span[class='std std-ref']");
-                responseString = "Adobe Acrobat: "+versionElement.text();
+                return responseString = "Adobe Acrobat: "+versionElement.text();
             }
 
             // Cisco
@@ -50,8 +50,8 @@ public class ScrappingHandler {
                 if ( elements.size() > 0) {
                     for ( Element item : elements) {
                          if ( item.text().contains("AnyConnect Secure Mobility Client")) {
-                             responseString = "Cisco: "+item.text();
-                             break;
+                            return responseString = "Cisco: "+item.text();
+                            //  break;
                          }
                      }
                 }
@@ -64,7 +64,7 @@ public class ScrappingHandler {
             if (url.contains("irfanview")) {
                 Element versionElement = doc.selectFirst("h3");
                 if ( versionElement != null ) {
-                    responseString = "IrfanView: "+versionElement.text();
+                    return responseString = "IrfanView: "+versionElement.text();
                 }
             }
 
@@ -72,10 +72,10 @@ public class ScrappingHandler {
             if ( url.contains("videolan")) {
                 Elements elements = doc.select("a");
                 for ( Element item : elements) {
-                    if ( (item.text() != null) && (item.text().contains("VLC")) ) {
+                    if ( (item.text() != null) && (item.text().contains("VLC")) && (item.attr("href").contains("/vlc/releases/")) ) {
                         System.out.println("VLC version found: "+item.text());
-                        responseString = "VLC: "+item.text();
-                        break;
+                        return responseString = "VLC: "+item.text();
+                        // break;
                     } else {
                         System.out.println("No VLC version found");
                     }

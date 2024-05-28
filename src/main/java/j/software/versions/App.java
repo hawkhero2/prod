@@ -66,7 +66,6 @@ FortiClient, Azure VPN Client, Libre Office
             }
         }
 
-
         try {
             FileWriter writer = new FileWriter("versions.txt", true);
 
