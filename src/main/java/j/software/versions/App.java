@@ -47,7 +47,7 @@ FortiClient, Azure VPN Client, Libre Office
 
                     if (url.contains("mozilla")) {
                         if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
-                            versions.add(item+",");
+                            versions.add(item.trim()+",");
                         }
                     }
                 }
@@ -71,7 +71,7 @@ FortiClient, Azure VPN Client, Libre Office
             FileWriter writer = new FileWriter("versions.txt", true);
 
             for ( String version : versions) {
-                writer.write(version);
+                writer.write(version+"\n");
             }
             writer.close();
         } catch (IOException e) {

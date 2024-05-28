@@ -41,7 +41,7 @@ public class ScrappingHandler {
             // Adobe Acrobat
             if (url.contains("adobe")) {
                 Element versionElement = doc.selectFirst("span[class='std std-ref']");
-                responseString = versionElement.text();
+                responseString = "Adobe Acrobat: "+versionElement.text();
             }
 
             // Cisco
@@ -50,7 +50,7 @@ public class ScrappingHandler {
                 if ( elements.size() > 0) {
                     for ( Element item : elements) {
                          if ( item.text().contains("AnyConnect Secure Mobility Client")) {
-                             responseString = item.text();
+                             responseString = "Cisco: "+item.text();
                              break;
                          }
                      }
@@ -64,19 +64,21 @@ public class ScrappingHandler {
             if (url.contains("irfanview")) {
                 Element versionElement = doc.selectFirst("h3");
                 if ( versionElement != null ) {
-                    responseString = versionElement.text();
+                    responseString = "IrfanView: "+versionElement.text();
                 }
-            } else {
-                System.out.println("No Irfanview version found");
             }
 
             // VLC
             if ( url.contains("videolan")) {
-                Element versionElement = doc.selectFirst("a");
-                if ( (versionElement != null) && ( versionElement.text().contains("VLC")) ) {
-                    responseString = versionElement.text();
-                } else { 
-                    System.out.println("No VLC version found");
+                Elements elements = doc.select("a");
+                for ( Element item : elements) {
+                    if ( (item.text() != null) && (item.text().contains("VLC")) ) {
+                        System.out.println("VLC version found: "+item.text());
+                        responseString = "VLC: "+item.text();
+                        break;
+                    } else {
+                        System.out.println("No VLC version found");
+                    }
                 }
             }
 
@@ -85,14 +87,12 @@ public class ScrappingHandler {
                 Elements elements = doc.select("p");
 
                 for (Element item : elements) {
+
                     if( item.text().contains("Skype for Windows Desktop version")){
-                        responseString = item.text();
-                        break;
+                    return responseString = "Skype: "+item.text();
                     }
                 }
-            } else {
-                System.out.println("No Skype version found");
-            }
+            } 
         } catch (Exception e ) {
             e.printStackTrace();
         }
