@@ -1,12 +1,10 @@
 package j.software.versions;
 
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,12 +49,8 @@ public class ScrappingHandler {
                     for ( Element item : elements) {
                          if ( item.text().contains("AnyConnect Secure Mobility Client")) {
                             return responseString = "Cisco: "+item.text();
-                            //  break;
                          }
                      }
-                }
-                else{
-                    System.out.println("No Cisco version found");
                 }
             }
 
@@ -73,12 +67,9 @@ public class ScrappingHandler {
                 Elements elements = doc.select("a");
                 for ( Element item : elements) {
                     if ( (item.text() != null) && (item.text().contains("VLC")) && (item.attr("href").contains("/vlc/releases/")) ) {
-                        System.out.println("VLC version found: "+item.text());
+                        // System.out.println("VLC version found: "+item.text());
                         return responseString = "VLC: "+item.text();
-                        // break;
-                    } else {
-                        System.out.println("No VLC version found");
-                    }
+                    } 
                 }
             }
 
@@ -99,12 +90,9 @@ public class ScrappingHandler {
                 Elements elements = doc.select("h1");
                 for (Element item : elements) {
                     if ((item.text() != null) && (item.text().contains("FortiClient")) ) {
-                        System.out.println("FortiClient version found: "+item.text());
+                        // System.out.println("FortiClient version found: "+item.text());
                         return responseString = "FortiClient: "+item.text();
-                        // break;
-                    } else {
-                        System.out.println("No FortiClient version found");
-                    }
+                    } 
                 }
                 
             }
@@ -113,7 +101,8 @@ public class ScrappingHandler {
             if(url.contains("libreoffice")) {
                 Elements elements = doc.select("h4");
                 for(Element item : elements) {
-                    if( (item.text() != null) && (item.text().contains("LibreOffice")) ) {
+                    if( (item.text() != null) && (item.text().contains("Latest Release")) ) {
+                        // System.out.println("LibreOffice version found: "+item.text());
                         return responseString = "LibreOffice: "+item.text();
                     }
                 }

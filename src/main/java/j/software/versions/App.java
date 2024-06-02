@@ -14,24 +14,27 @@ Add the API urls for the following apps:
 Chrome, Firefox, Adobe Acrobat Reader DC,Cisco AnyConnect,
 Citrix Workspace,IrfanView,Java 8,Skype™,VLC media player,
 Thunderbird, Greenshot, OpenOffice, Microsoft Office Home and Business 2013 Microsoft Office Home and Business 2016 ,
-Windows Defender Security Center,Sonicwall NetExtender,PGina
+Windows Defender Security Center,Sonicwall NetExtender
 FortiClient, Azure VPN Client, Libre Office
 */
  
  
 {
     public static void main( String[] args ) {
-        String[] urls = {"https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
-        "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
-        "https://www.irfanview.com/main_history.htm",
-        "https://www.videolan.org/vlc/releases/",
-        "https://support.microsoft.com/en-us/skype/what-is-the-latest-version-of-skype-on-each-platform-7423a24f-1f26-4782-85d6-27abdaadd5ad",
-        "https://www.fortinet.com/support/product-downloads",
-        "https://www.libreoffice.org/download/release-notes/"
+        String[] urls = {
+            "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
+            "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
+            "https://www.irfanview.com/main_history.htm",
+            "https://www.videolan.org/vlc/releases/",
+            "https://support.microsoft.com/en-us/skype/what-is-the-latest-version-of-skype-on-each-platform-7423a24f-1f26-4782-85d6-27abdaadd5ad",
+            "https://www.fortinet.com/support/product-downloads",
+            "https://www.libreoffice.org/download/release-notes/"
         };
 
-        String[] apiUrls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
-        "https://product-details.mozilla.org/1.0/firefox_versions.json"};
+        String[] apiUrls = {
+            "https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
+            "https://product-details.mozilla.org/1.0/firefox_versions.json"
+        };
 
         ArrayList<String> versions = new ArrayList<String>(urls.length+apiUrls.length);
         for (String url : apiUrls) {
