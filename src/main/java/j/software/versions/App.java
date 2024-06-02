@@ -1,10 +1,10 @@
 package j.software.versions;
 
+import java.io.FileWriter;
+import java.io.IOException;
 // import j.software.versions.ApiHandler;
 // import j.software.versions.ScrappingHandler;
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.IOException;
 
 
 public class App 
@@ -25,7 +25,10 @@ FortiClient, Azure VPN Client, Libre Office
         "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
         "https://www.irfanview.com/main_history.htm",
         "https://www.videolan.org/vlc/releases/",
-        "https://support.microsoft.com/en-us/skype/what-is-the-latest-version-of-skype-on-each-platform-7423a24f-1f26-4782-85d6-27abdaadd5ad"};
+        "https://support.microsoft.com/en-us/skype/what-is-the-latest-version-of-skype-on-each-platform-7423a24f-1f26-4782-85d6-27abdaadd5ad",
+        "https://www.fortinet.com/support/product-downloads",
+        "https://www.libreoffice.org/download/release-notes/"
+        };
 
         String[] apiUrls = {"https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/canary/versions/all/releases?filter=endtime=none",
         "https://product-details.mozilla.org/1.0/firefox_versions.json"};

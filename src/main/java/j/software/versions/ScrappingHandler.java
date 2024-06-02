@@ -93,6 +93,32 @@ public class ScrappingHandler {
                     }
                 }
             } 
+
+            // Forticlient
+            if(url.contains("fortinet")) {
+                Elements elements = doc.select("h1");
+                for (Element item : elements) {
+                    if ((item.text() != null) && (item.text().contains("FortiClient")) ) {
+                        System.out.println("FortiClient version found: "+item.text());
+                        return responseString = "FortiClient: "+item.text();
+                        // break;
+                    } else {
+                        System.out.println("No FortiClient version found");
+                    }
+                }
+                
+            }
+
+            // LibreOffice
+            if(url.contains("libreoffice")) {
+                Elements elements = doc.select("h4");
+                for(Element item : elements) {
+                    if( (item.text() != null) && (item.text().contains("LibreOffice")) ) {
+                        return responseString = "LibreOffice: "+item.text();
+                    }
+                }
+            }
+
         } catch (Exception e ) {
             e.printStackTrace();
         }
