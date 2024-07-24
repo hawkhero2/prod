@@ -53,7 +53,7 @@ FortiClient, Azure VPN Client, Libre Office
 
                     if (url.contains("mozilla")) {
                         if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
-                            versions.add(item.trim()+",");
+                            versions.add("Firefox:"+item.trim().split(":")[1].trim()+",");
                         }
                     }
                 }

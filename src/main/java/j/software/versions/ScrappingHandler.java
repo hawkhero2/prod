@@ -47,10 +47,11 @@ public class ScrappingHandler {
                Elements elements = doc.select("a[data-id='link4']");
                 if ( elements.size() > 0) {
                     for ( Element item : elements) {
-                         if ( item.text().contains("AnyConnect Secure Mobility Client")) {
-                            return responseString = "Cisco: "+item.text();
-                         }
-                     }
+                        if ( item.text().contains("AnyConnect Secure Mobility Client")) {
+                            String splitted = item.text().split(",")[1];
+                            return responseString = "Cisco: "+splitted;
+                        }
+                    }
                 }
             }
 
@@ -87,13 +88,17 @@ public class ScrappingHandler {
 
             // Forticlient
             if(url.contains("fortinet")) {
-                Elements elements = doc.select("h1");
-                for (Element item : elements) {
-                    if ((item.text() != null) && (item.text().contains("FortiClient")) ) {
-                        // System.out.println("FortiClient version found: "+item.text());
-                        return responseString = "FortiClient: "+item.text();
-                    } 
+                Element element = doc.selectFirst("h2[class='new--design']");
+                if ((element != null) && (element.text().contains("FortiClient"))) {
+                    return responseString = "FortiClient: "+element.text().trim().split(" ")[1];
                 }
+                
+                // for (Element item : elements) {
+                //     if ((item.text() != null) && (item.text().contains("FortiClient")) ) {
+                //         // System.out.println("FortiClient version found: "+item.text());
+                //         return responseString = "FortiClient: "+item.text();
+                //     } 
+                // }
                 
             }
 
