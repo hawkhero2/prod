@@ -42,7 +42,7 @@ FortiClient, Azure VPN Client, Libre Office
                 ApiHandler apiHandler = new ApiHandler();
                 String responseStr = apiHandler.get(url);
 
-                for ( String item : responseStr.split(",")) {
+                for (String item : responseStr.split(",")) {
                     
                     if (url.contains("chrome")) {
 
@@ -75,7 +75,7 @@ FortiClient, Azure VPN Client, Libre Office
         try {
             FileWriter writer = new FileWriter("versions.txt", true);
 
-            for ( String version : versions) {
+            for (String version : versions) {
                 writer.write(version+"\n");
             }
             writer.close();

@@ -122,6 +122,30 @@ public class ScrappingHandler {
             if (url.contains("forti")) {
                 responseString = fortiParser(doc);
             }
+
+            if(url.contains("libreoffice")) {
+                responseString = libreOfficeParser(doc);
+            }
+
+            if(url.contains("skype")){
+                responseString = skypeParser(doc);
+            }
+
+            if(url.contains("videolan")) {
+                responseString = vlcParser(doc);
+            }
+
+            if(url.contains("adobe")) {
+                responseString = adobeParser(doc);
+            }
+
+            if(url.contains("cisco")) {
+                responseString = ciscoParser(doc);
+            }
+
+            if(url.contains("irfanview")) {
+                responseString = irfanviewParser(doc);
+            }
             
         } catch (Exception e ) {
             e.printStackTrace();
