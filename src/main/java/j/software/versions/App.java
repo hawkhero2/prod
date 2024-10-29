@@ -6,6 +6,8 @@ import java.io.IOException;
 // import j.software.versions.ScrappingHandler;
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 
 public class App 
 
@@ -21,6 +23,9 @@ FortiClient, Azure VPN Client, Libre Office
  
 {
     public static void main( String[] args ) {
+        
+        JSONObject json = new JSONObject();
+
         String[] urls = {
             "https://www.adobe.com/devnet-docs/acrobatetk/tools/ReleaseNotesDC/index.html",
             "https://www.cisco.com/c/en/us/support/security/anyconnect-secure-mobility-client/products-release-notes-list.html",
@@ -47,17 +52,17 @@ FortiClient, Azure VPN Client, Libre Office
                     if (url.contains("chrome")) {
 
                         if(item.contains("\"version\"") ) {
-                            versions.add("chrome:"+item.split(":")[1]+",");
+                            versions.add("chrome:"+item.split(":")[1].split("\"")[1]+",");
                         }
                     }
 
                     if (url.contains("mozilla")) {
                         if (item.contains("\"LATEST_FIREFOX_VERSION\"")) {
-                            versions.add("Firefox:"+item.trim().split(":")[1].trim()+",");
+                            versions.add("Firefox:"+item.trim().split(":")[1].trim().split("\"")[1]+",");
                         }
                     }
                 }
-            System.out.println(versions.toString());
+            // System.out.println(versions.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }

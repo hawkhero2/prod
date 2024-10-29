@@ -25,7 +25,9 @@ public class ScrappingHandler {
         
         Element versionElement = doc.selectFirst("h3");
         if (versionElement != null ) {
-            return responseString = "IrfanView: "+versionElement.text();
+            responseString = versionElement.text().trim().split(" ")[1];
+            return "IrfanView: "+responseString;
+            // return responseString = "IrfanView: "+versionElement.text();
         }
         
        return responseString;
@@ -36,7 +38,9 @@ public class ScrappingHandler {
         Elements elements = doc.select("p");
         for (Element item : elements) {
             if(item.text().contains("Skype for Windows Desktop version")){
-            return responseString = "Skype: "+item.text();
+            responseString = "Skype: "+item.text().trim().split("version")[1];
+            return responseString;
+            // return responseString = "Skype: "+item.text();
             }
         }
         return responseString;
@@ -56,10 +60,12 @@ public class ScrappingHandler {
     }
 
     public String adobeParser(Document doc) {
+        
         String responseString="";
-
         Element versionElement = doc.selectFirst("span[class='std std-ref']");
-        return responseString = "Adobe Acrobat: "+versionElement.text();
+        // return String responseString = "Adobe Acrobat: "+versionElement.text();
+        responseString = versionElement.text().trim().split(" ")[0];
+        return "Adobe Acrobat: "+responseString;
     }
 
     public String ciscoParser(Document doc) {
@@ -70,7 +76,9 @@ public class ScrappingHandler {
             for (Element item : elements) {
                 if (item.text().contains("AnyConnect Secure Mobility Client")) {
                     String splitted = item.text().split(",")[1];
-                    return responseString = "Cisco: "+splitted;
+                    responseString = splitted.trim().split(" ")[1];
+                    return responseString = "Cisco: "+responseString;
+                    // return responseString = "Cisco: "+splitted;
                 }
             }
         }
@@ -93,7 +101,9 @@ public class ScrappingHandler {
         Elements elements = doc.select("h4");
         for(Element item : elements) {
             if( (item.text() != null) && (item.text().contains("Latest Release")) ) {
-                return responseString = "LibreOffice: "+item.text();
+                responseString = "LibreOffice: "+item.text().trim().split(" ")[1];
+                return responseString;
+                // return responseString = "LibreOffice: "+item.text();
             }
         }
         return responseString;
